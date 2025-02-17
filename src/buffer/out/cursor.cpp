@@ -92,6 +92,7 @@ void Cursor::SetIsOn(const bool fIsOn) noexcept
     _RedrawCursorAlways();
 }
 
+//My contribution
 void Cursor::SetBlinkingAllowed(const bool fBlinkingAllowed) noexcept
 {
     _fBlinkingAllowed = fBlinkingAllowed;
@@ -167,6 +168,21 @@ void Cursor::_RedrawCursor() noexcept
         else
         {
             _RedrawCursorAlways();
+        }
+    }
+}
+
+//My contribution
+void Cursor::applyCursorSettings(Json::Value& settings)
+{
+    if (IsOn() && !IsConversionArea())
+    {
+        if (settings.isMember("cursorCornerRadius"))
+        {
+            std::string radius = settings["cursorCornerRadius"].asString();
+            int topLeft, topRight, bottomRight, bottomLeft;
+            parseCornerRadius(radius, topLeft, topRight, bottomRight, bottomLeft);
+            applyCursorCornerRadius(cursorShape, topLeft, topRight, bottomRight, bottomLeft);
         }
     }
 }
