@@ -117,6 +117,39 @@ CATCH_RETURN();
     return S_OK;
 }
 
+//My contribution
+[[nodiscard]] HRESULT UiaEngine::InvalidateColorScheme(ColorAttributes* colorAttributes) 
+{
+    if (colorAttributes == nullptr){
+        return E_INVALIDARG;
+    }
+
+    _colorAttributes = newAttribute;
+
+    newAttribute = *colorAttributes;
+    _colorSchemeChanged = true;
+
+    return S_OK;
+}
+CATCH_LOG_RETURN_HR(E_FAIL);
+
+[[nodiscard]] HRESULT UiaEngine::PresentColorScheme() 
+{
+    RETURN_HR_IF(S_FALSE, !_isEnabled);
+
+    if (_colorSchemeChanged)
+    {
+        {
+            _dispatcher->SignalColorSchemeChanged();
+        }
+        CATCH_LOG();
+    }
+
+    _colorSchemeChanged = false;
+    return S_OK;
+}
+//Deals with cursor properties such as color management
+
 // Routine Description:
 // - Scrolls the existing dirty region (if it exists) and
 //   invalidates the area that is uncovered in the window.
