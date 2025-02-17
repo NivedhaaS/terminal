@@ -185,6 +185,9 @@ void Cursor::applyCursorCornerRadius(CursorShape& cursorShape, int topLeft, int 
         {
             applyRoundedGlyphCorners();
         }
+        else{
+            continue;
+        }
     }
 }
 
