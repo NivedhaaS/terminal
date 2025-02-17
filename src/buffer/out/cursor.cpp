@@ -173,16 +173,17 @@ void Cursor::_RedrawCursor() noexcept
 }
 
 //My contribution
-void Cursor::applyCursorSettings(Json::Value& settings)
+void Cursor::applyCursorCornerRadius(CursorShape& cursorShape, int topLeft, int topRight, int bottomRight, int bottomLeft)
 {
     if (IsOn() && !IsConversionArea())
     {
-        if (settings.isMember("cursorCornerRadius"))
+        if (cursorShape == CursorShape::FilledBox || cursorShape == CursorShape::Vintage)
         {
-            std::string radius = settings["cursorCornerRadius"].asString();
-            int topLeft, topRight, bottomRight, bottomLeft;
-            parseCornerRadius(radius, topLeft, topRight, bottomRight, bottomLeft);
-            applyCursorCornerRadius(cursorShape, topLeft, topRight, bottomRight, bottomLeft);
+            cursorShape.setCornerRadius(topLeft, topRight, bottomRight, bottomLeft);
+        }
+        else if (cursorShape == CursorShape::Glyph)
+        {
+            applyRoundedGlyphCorners();
         }
     }
 }
