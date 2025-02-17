@@ -101,6 +101,24 @@ namespace winrt::Microsoft::Terminal::Control::implementation
             _pendingResponses.append(wstr);
         });
 
+        //My contribution
+        void ControlCore::SetCursorPosition(int x, int y)
+        {
+            auto lock = _terminal->LockForWriting();
+            _terminal->SetCursorPosition({ x, y });
+        }   
+
+        til::point ControlCore::GetCursorPosition()
+        {
+            auto lock = _terminal->LockForReading();
+            return _terminal->GetCursorPosition();
+        }
+
+        auto lock = _terminal->LockForReading();
+        return _terminal->GetBufferHeight();
+
+        //manage the cursor position in terminal buffer
+
         // GH#8969: pre-seed working directory to prevent potential races
         _terminal->SetWorkingDirectory(_settings->StartingDirectory());
 
