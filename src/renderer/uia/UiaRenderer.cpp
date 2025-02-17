@@ -117,7 +117,7 @@ CATCH_RETURN();
     return S_OK;
 }
 
-//My contribution
+//My contribution:
 [[nodiscard]] HRESULT UiaEngine::InvalidateColorScheme(ColorAttributes* colorAttributes) 
 {
     if (colorAttributes == nullptr){

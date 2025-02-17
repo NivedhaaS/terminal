@@ -101,7 +101,7 @@ namespace winrt::Microsoft::Terminal::Control::implementation
             _pendingResponses.append(wstr);
         });
 
-        //My contribution
+        //My contribution:
         void ControlCore::SetCursorPosition(int x, int y)
         {
             auto lock = _terminal->LockForWriting();

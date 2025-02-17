@@ -92,7 +92,7 @@ void Cursor::SetIsOn(const bool fIsOn) noexcept
     _RedrawCursorAlways();
 }
 
-//My contribution
+//My contribution:
 void Cursor::SetBlinkingAllowed(const bool fBlinkingAllowed) noexcept
 {
     _fBlinkingAllowed = fBlinkingAllowed;
@@ -112,6 +112,7 @@ void Cursor::SetBlinkingAllowed(const bool fBlinkingAllowed) noexcept
         _SetCursorVisibilityBasedOnIsVisible();
     }
 }
+//cursor stays on when it is not blinking
 
 void Cursor::SetIsDouble(const bool fIsDouble) noexcept
 {
